@@ -1,0 +1,32 @@
+How To Build Box Hunter On Linux
+================================
+1. Make sure you have all the dependencies installed under /usr or /usr/local:
+	glew-1.9.0
+	SDL-2.0.0
+	box2d-2.1.2
+	cmake 2.8
+
+2. Go into the project's root folder:
+	cd ~/Downloads/box-hunter
+
+3. Make a new build folder and go inside it:
+	If "build" dir is already present: rm -rf build
+	mkdir build
+	cd build
+
+4. Generate Makefiles:
+	cmake ..
+
+5. Build the game:
+	make
+	
+6. Strip the debug symbols:
+	strip box-hunter
+
+7. Play the game:
+	./box-hunter
+
+Optional
+--------
+8. Now you can copy the contents of the build folder somewhere else if you want.
+   (You only need to copy "box-hunter" and "shaders/")
