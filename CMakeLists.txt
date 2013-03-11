@@ -51,7 +51,8 @@ add_executable(
 	src/levels/Level3.cpp
 	src/levels/Level4.cpp
 	src/levels/Level5.cpp
-	src/levels/Level6.cpp )
+	src/levels/Level6.cpp
+	src/levels/Level7.cpp )
 
 link_directories( /usr/local/lib )
 

@@ -76,10 +76,15 @@ class Physics2D
 		RELOAD,	// restart the current level
 		MOVE_RIGHT,
 		MOVE_LEFT,
-		JUMP
+		JUMP,
+		NEXT_LEVEL,
+		PREVIOUS_LEVEL
 	};
 
 	bool owns_physics2d_config_memory;
+	int cheat_next_level_index;
+	int cheat_timeout;
+	int cheat_timer;
 
 public:
 	Physics2DConfig* physics2d_config;

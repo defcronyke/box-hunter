@@ -88,6 +88,7 @@ void MyContactListener::BeginContact(b2Contact* contact)
 			else
 			{
 				this->first_goal_drop = false;
+				this->break_goal_on_landing = false;
 			}
 		}
 		if (reinterpret_cast<intptr_t>(contact->GetFixtureB()->GetUserData()) == 3)
@@ -100,6 +101,7 @@ void MyContactListener::BeginContact(b2Contact* contact)
 			else
 			{
 				this->first_goal_drop = false;
+				this->break_goal_on_landing = false;
 			}
 		}
 	}
@@ -155,6 +157,9 @@ Physics2DConfig::~Physics2DConfig()
 
 Physics2D::Physics2D()
 	: owns_physics2d_config_memory(true),
+	  cheat_next_level_index(0),
+	  cheat_timeout(100),
+	  cheat_timer(cheat_timeout),
 	  physics2d_config(new Physics2DConfig),
 	  gravity(physics2d_config->gravity.x, physics2d_config->gravity.y),
 	  do_sleep(physics2d_config->do_sleep),
@@ -170,6 +175,9 @@ Physics2D::Physics2D()
 
 Physics2D::Physics2D(Physics2DConfig*& physics2d_config)
 	: owns_physics2d_config_memory(false),
+	  cheat_next_level_index(0),
+	  cheat_timeout(100),
+	  cheat_timer(cheat_timeout),
 	  physics2d_config(physics2d_config),
 	  gravity(physics2d_config->gravity.x, physics2d_config->gravity.y),
 	  do_sleep(physics2d_config->do_sleep),
@@ -185,6 +193,9 @@ Physics2D::Physics2D(Physics2DConfig*& physics2d_config)
 
 Physics2D::Physics2D(Physics2DConfig& physics2d_config)
 	: owns_physics2d_config_memory(false),
+	  cheat_next_level_index(0),
+	  cheat_timeout(100),
+	  cheat_timer(cheat_timeout),
 	  physics2d_config(&physics2d_config),
 	  gravity(physics2d_config.gravity.x, physics2d_config.gravity.y),
 	  do_sleep(physics2d_config.do_sleep),
@@ -328,6 +339,9 @@ Physics2D::EVENTS Physics2D::handle_events()
 {
 	Physics2D::EVENTS event = NOTHING;
 
+	std::string cheat_next_level = "plus";
+	std::string cheat_previous_level = "minus";
+
 	if (!this->sdl_event)
 	{
 		std::cerr << "\nError: You have to call Window::open() before Window::handle_events()\n";
@@ -356,6 +370,74 @@ Physics2D::EVENTS Physics2D::handle_events()
 			{
 				event = JUMP;
 			}
+
+			// cheat: skip to the next level
+			else if (this->sdl_event->key.keysym.sym == SDLK_p)
+			{
+				this->cheat_next_level_index++;
+				this->cheat_timer = this->cheat_timeout;
+			}
+
+			else if (this->sdl_event->key.keysym.sym == SDLK_l &&
+					 this->cheat_next_level_index == 1)
+			{
+				this->cheat_next_level_index++;
+				this->cheat_timer = this->cheat_timeout;
+			}
+
+			else if (this->sdl_event->key.keysym.sym == SDLK_u &&
+					 this->cheat_next_level_index == 2)
+			{
+				this->cheat_next_level_index++;
+				this->cheat_timer = this->cheat_timeout;
+			}
+
+			else if (this->sdl_event->key.keysym.sym == SDLK_s &&
+					 this->cheat_next_level_index == 3)
+			{
+				this->cheat_timer = this->cheat_timeout;
+				event = NEXT_LEVEL;
+			}
+
+			// cheat: skip to the previous level
+			else if (this->sdl_event->key.keysym.sym == SDLK_m)
+			{
+				this->cheat_next_level_index++;
+				this->cheat_timer = this->cheat_timeout;
+			}
+
+			else if (this->sdl_event->key.keysym.sym == SDLK_i &&
+					 this->cheat_next_level_index == 1)
+			{
+				this->cheat_next_level_index++;
+				this->cheat_timer = this->cheat_timeout;
+			}
+
+			else if (this->sdl_event->key.keysym.sym == SDLK_n &&
+					 this->cheat_next_level_index == 2)
+			{
+				this->cheat_next_level_index++;
+				this->cheat_timer = this->cheat_timeout;
+			}
+
+			else if (this->sdl_event->key.keysym.sym == SDLK_u &&
+					 this->cheat_next_level_index == 3)
+			{
+				this->cheat_next_level_index++;
+				this->cheat_timer = this->cheat_timeout;
+			}
+
+			else if (this->sdl_event->key.keysym.sym == SDLK_s &&
+					 this->cheat_next_level_index == 4)
+			{
+				this->cheat_timer = this->cheat_timeout;
+				event = PREVIOUS_LEVEL;
+			}
+
+			else
+			{
+				this->cheat_next_level_index = 0;
+			}
 		}
 
 		else if (this->sdl_event->type == SDL_KEYUP)
@@ -370,6 +452,16 @@ Physics2D::EVENTS Physics2D::handle_events()
 				event = RELOAD;
 			}
 		}
+	}
+
+	if (this->cheat_timer <= 0)
+	{
+		this->cheat_next_level_index = 0;
+		this->cheat_timer = this->cheat_timeout;
+	}
+	else
+	{
+		this->cheat_timer--;
 	}
 
 	return event;
@@ -461,7 +553,7 @@ int Physics2D::step(std::vector<Defcronyke::GameObject*>& objects_on_screen)
 
 			b2Vec2 linear_velocity = this->dynamic_bodies[i]->GetLinearVelocity();
 
-			if (linear_velocity.y < -5.8f)
+			if (linear_velocity.y < -0.5f)
 			{
 				this->contact_listener->break_goal_on_landing = true;
 			}
@@ -472,10 +564,15 @@ int Physics2D::step(std::vector<Defcronyke::GameObject*>& objects_on_screen)
 				return 3;	// quit
 			}
 
-			if (this->contact_listener->level_completed)
+			if (this->contact_listener->level_completed || event == NEXT_LEVEL)
 			{
 				std::cout << "Level Completed!" << std::endl;
 				return 2;	// quit
+			}
+
+			if (event == PREVIOUS_LEVEL)
+			{
+				return 5;
 			}
 		}
 	}
