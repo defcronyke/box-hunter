@@ -15,15 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with Box Hunter.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Level3.hpp
+ * Level008.hpp
  *
- *  Created on: 2013-03-10
+ *  Created on: 2013-03-11
  *      Author: Jeremy Carter
  *     Contact: Jeremy@JeremyCarter.ca
  */
 
-#ifndef LEVEL3_HPP_
-#define LEVEL3_HPP_
+#ifndef LEVEL008_HPP_
+#define LEVEL008_HPP_
 
 #include <vector>
 #include "../Window.hpp"
@@ -33,11 +33,11 @@ namespace Defcronyke
 
 class GameObject;
 
-class Level3
+class Level008
 {
 public:
-	Level3(std::vector<Defcronyke::GameObject*>& objects_on_screen, Defcronyke::WindowConfig& window_config);
-	virtual ~Level3();
+	Level008(std::vector<Defcronyke::GameObject*>& objects_on_screen, Defcronyke::WindowConfig& window_config);
+	virtual ~Level008();
 };
 
 }

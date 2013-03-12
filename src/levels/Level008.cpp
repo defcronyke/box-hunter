@@ -15,56 +15,57 @@
  * You should have received a copy of the GNU General Public License
  * along with Box Hunter.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Level3.cpp
+ * Level008.cpp
  *
- *  Created on: 2013-03-10
+ *  Created on: 2013-03-11
  *      Author: Jeremy Carter
  *     Contact: Jeremy@JeremyCarter.ca
  */
 
-#include "../../include/levels/Level3.hpp"
+#include "../../include/levels/Level008.hpp"
 #include <vector>
 #include "../../include/Triangle.hpp"
 #include "../../include/Square.hpp"
-#include "../../include/Polygon.hpp"
-#include "../../include/ConcavePolygon.hpp"
 #include "../../include/SquarePlayer.hpp"
 #include "../../include/Goal.hpp"
 
 namespace Defcronyke
 {
 
-Level3::Level3(std::vector<Defcronyke::GameObject*>& objects_on_screen, Defcronyke::WindowConfig& window_config)
+Level008::Level008(std::vector<Defcronyke::GameObject*>& objects_on_screen, Defcronyke::WindowConfig& window_config)
 {
 	objects_on_screen.push_back(
-		new Defcronyke::Square((window_config.width * 0.02f) / 2.0f - 0.5f, 3.0f, 0.0f));
+		new Defcronyke::Square(11.7f, 2.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.5f, 0.7f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::Square((window_config.width * 0.02f) / 2.0f - 0.5f, 5.0f, 0.0f));
+		new Defcronyke::Triangle(11.0f, 1.0f, 0.0f, 0.25f, 5.0f, 1.0f, 0.05f, 1.0f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::Square((window_config.width * 0.02f) / 2.0f - 0.5f, 7.0f, 0.0f));
+		new Defcronyke::Triangle(9.0f, 0.5f, 0.0f, 0.25f, 5.0f, 1.0f, 0.05f, 1.0f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::Square((window_config.width * 0.02f) / 2.0f - 0.5f, 9.0f, 0.0f));
+		new Defcronyke::Square(5.7f, 2.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.5f, 0.5f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::Square((window_config.width * 0.02f) / 2.0f - 0.5f, 11.0f, 0.0f));
+		new Defcronyke::Triangle(5.0f, 0.5f, 0.0f, 0.25f, 5.0f, 1.0f, 0.05f, 1.0f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::Square((window_config.width * 0.02f) / 2.0f - 0.5f, 13.0f, 0.0f));
+		new Defcronyke::Triangle(3.0f, 1.0f, 0.0f, 0.25f, 5.0f, 1.0f, 0.05f, 1.0f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::Square((window_config.width * 0.02f) / 2.0f - 0.5f, 15.0f, 0.0f));
+		new Defcronyke::Triangle(1.0f, 0.5f, 0.0f, 0.25f, 5.0f, 1.0f, 0.05f, 1.0f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::Goal((window_config.width * 0.02f) / 2.0f - 0.25f, 17.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.1f, 0.0f));
+		new Defcronyke::Triangle(11.7f, 5.0f, 0.0f, 1.0f, 2.0f, 1.0f, 0.05f, 0.0f));
+
+	objects_on_screen.push_back(
+		new Defcronyke::Goal((window_config.width * 0.02f) - 2.0f, (window_config.height * 0.02f) - 1.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.1f, 0.0f));
 
 	objects_on_screen.push_back(
 		new Defcronyke::SquarePlayer(0.0f, 0.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.3f, 0.0f));
 }
 
-Level3::~Level3()
+Level008::~Level008()
 {
 
 }

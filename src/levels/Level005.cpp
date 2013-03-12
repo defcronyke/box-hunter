@@ -15,38 +15,48 @@
  * You should have received a copy of the GNU General Public License
  * along with Box Hunter.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Level6.cpp
+ * Level005.cpp
  *
  *  Created on: 2013-03-10
  *      Author: Jeremy Carter
  *     Contact: Jeremy@JeremyCarter.ca
  */
 
-#include "../../include/levels/Level6.hpp"
+#include "../../include/levels/Level005.hpp"
 #include <vector>
 #include "../../include/Triangle.hpp"
 #include "../../include/Square.hpp"
-#include "../../include/Polygon.hpp"
-#include "../../include/ConcavePolygon.hpp"
 #include "../../include/SquarePlayer.hpp"
 #include "../../include/Goal.hpp"
 
 namespace Defcronyke
 {
 
-Level6::Level6(std::vector<Defcronyke::GameObject*>& objects_on_screen, Defcronyke::WindowConfig& window_config)
+Level005::Level005(std::vector<Defcronyke::GameObject*>& objects_on_screen, Defcronyke::WindowConfig& window_config)
 {
 	objects_on_screen.push_back(
-		new Defcronyke::Triangle((window_config.width * 0.02f) / 2.0f + 1.2f, 9.0f, 0.0f, 0.25f, 3.0f));
+		new Defcronyke::Square((window_config.width * 0.02f) / 2.0f - 1.5f, 11.0f, 0.0f, 4.2f, 0.5f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::Goal((window_config.width * 0.02f) / 2.0f - 0.25f, 10.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.1f, 0.0f));
+		new Defcronyke::Square((window_config.width * 0.02f) / 2.0f + 1.5f, 8.0f, 0.0f, 0.5f, 1.3f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::SquarePlayer((window_config.width * 0.02f) - 0.5f, 0.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.3f, 0.0f));
+		new Defcronyke::Triangle((window_config.width * 0.02f) / 2.0f - 1.5f, 7.0f, 0.0f, 1.0f, 1.0f));
+
+	objects_on_screen.push_back(
+		new Defcronyke::Triangle((window_config.width * 0.02f) / 2.0f - 3.5f, 13.0f, 0.0f, 1.0f, 1.0f));
+
+	objects_on_screen.push_back(
+		new Defcronyke::Triangle((window_config.width * 0.02f) / 2.0f + 0.8f, 19.0f, 0.0f, 1.0f, 1.0f));
+
+	objects_on_screen.push_back(
+		new Defcronyke::Goal((window_config.width * 0.02f) / 2.0f - 0.25f, 9.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.1f, 0.0f));
+
+	objects_on_screen.push_back(
+		new Defcronyke::SquarePlayer(0.0f, 0.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.3f, 0.0f));
 }
 
-Level6::~Level6()
+Level005::~Level005()
 {
 
 }

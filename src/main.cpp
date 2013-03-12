@@ -27,27 +27,24 @@
 #include "../include/OpenGL.hpp"
 #include "../include/Physics2D.hpp"
 #include "../include/GameObject.hpp"
-#include "../include/levels/Level1.hpp"
-#include "../include/levels/Level2.hpp"
-#include "../include/levels/Level3.hpp"
-#include "../include/levels/Level4.hpp"
-#include "../include/levels/Level5.hpp"
-#include "../include/levels/Level6.hpp"
-#include "../include/levels/Level7.hpp"
-#include "../include/levels/Level8.hpp"
+#include "../include/levels/Level001.hpp"
+#include "../include/levels/Level002.hpp"
+#include "../include/levels/Level003.hpp"
+#include "../include/levels/Level004.hpp"
+#include "../include/levels/Level005.hpp"
+#include "../include/levels/Level006.hpp"
+#include "../include/levels/Level007.hpp"
+#include "../include/levels/Level008.hpp"
+#include "../include/levels/Level009.hpp"
+#include "../include/levels/Level010.hpp"
+#include "../include/levels/Level011.hpp"
 
 int main(int argc, char** argv)
 {
 	int level = 1;
-//	int level = 2;
-//	int level = 3;
-//	int level = 4;
-//	int level = 5;
-//	int level = 6;
-//	int level = 7;
-//	int level = 8;
+//	int level = 11;
 
-	int num_levels = 8;
+	int num_levels = 10;
 
 	bool running_outer = true;
 
@@ -73,21 +70,27 @@ int main(int argc, char** argv)
 		std::vector<Defcronyke::GameObject*> objects;
 
 		if (level == 1)
-			Defcronyke::Level1 level1(objects, window_config);
+			Defcronyke::Level001 level001(objects, window_config);
 		else if (level == 2)
-			Defcronyke::Level2 level2(objects, window_config);
+			Defcronyke::Level002 level002(objects, window_config);
 		else if (level == 3)
-			Defcronyke::Level3 level3(objects, window_config);
+			Defcronyke::Level003 level003(objects, window_config);
 		else if (level == 4)
-			Defcronyke::Level4 level4(objects, window_config);
+			Defcronyke::Level004 level004(objects, window_config);
 		else if (level == 5)
-			Defcronyke::Level5 level5(objects, window_config);
+			Defcronyke::Level005 level005(objects, window_config);
 		else if (level == 6)
-			Defcronyke::Level6 level6(objects, window_config);
+			Defcronyke::Level006 level006(objects, window_config);
 		else if (level == 7)
-			Defcronyke::Level7 level7(objects, window_config);
+			Defcronyke::Level007 level007(objects, window_config);
 		else if (level == 8)
-			Defcronyke::Level8 level8(objects, window_config);
+			Defcronyke::Level008 level008(objects, window_config);
+		else if (level == 9)
+			Defcronyke::Level009 level009(objects, window_config);
+		else if (level == 10)
+			Defcronyke::Level010 level010(objects, window_config);
+//		else if (level == 11)
+//			Defcronyke::Level011 level011(objects, window_config);
 		else
 		{
 			std::cout << "Congratulations, you beat the game!" << std::endl;

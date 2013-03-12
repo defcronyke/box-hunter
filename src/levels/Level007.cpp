@@ -15,26 +15,24 @@
  * You should have received a copy of the GNU General Public License
  * along with Box Hunter.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Level7.cpp
+ * Level007.cpp
  *
  *  Created on: 2013-03-10
  *      Author: Jeremy Carter
  *     Contact: Jeremy@JeremyCarter.ca
  */
 
-#include "../../include/levels/Level7.hpp"
+#include "../../include/levels/Level007.hpp"
 #include <vector>
 #include "../../include/Triangle.hpp"
 #include "../../include/Square.hpp"
-#include "../../include/Polygon.hpp"
-#include "../../include/ConcavePolygon.hpp"
 #include "../../include/SquarePlayer.hpp"
 #include "../../include/Goal.hpp"
 
 namespace Defcronyke
 {
 
-Level7::Level7(std::vector<Defcronyke::GameObject*>& objects_on_screen, Defcronyke::WindowConfig& window_config)
+Level007::Level007(std::vector<Defcronyke::GameObject*>& objects_on_screen, Defcronyke::WindowConfig& window_config)
 {
 	objects_on_screen.push_back(
 		new Defcronyke::Square((window_config.width * 0.02f) - 3.0f, 3.0f, 0.0f, 0.5f, ((window_config.height * 0.02f) - 0.5f) / 2.0f));
@@ -82,7 +80,7 @@ Level7::Level7(std::vector<Defcronyke::GameObject*>& objects_on_screen, Defcrony
 		new Defcronyke::SquarePlayer(0.0f, 0.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.3f, 0.0f));
 }
 
-Level7::~Level7()
+Level007::~Level007()
 {
 
 }

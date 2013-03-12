@@ -46,14 +46,17 @@ add_executable(
 	src/ConcavePolygon.cpp
 	src/SquarePlayer.cpp
 	src/Goal.cpp
-	src/levels/Level1.cpp
-	src/levels/Level2.cpp
-	src/levels/Level3.cpp
-	src/levels/Level4.cpp
-	src/levels/Level5.cpp
-	src/levels/Level6.cpp
-	src/levels/Level7.cpp
-	src/levels/Level8.cpp )
+	src/levels/Level001.cpp
+	src/levels/Level002.cpp
+	src/levels/Level003.cpp
+	src/levels/Level004.cpp
+	src/levels/Level005.cpp
+	src/levels/Level006.cpp
+	src/levels/Level007.cpp
+	src/levels/Level008.cpp
+	src/levels/Level009.cpp
+	src/levels/Level010.cpp
+	src/levels/Level011.cpp )
 
 link_directories( /usr/local/lib )
 
