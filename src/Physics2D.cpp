@@ -222,119 +222,6 @@ Physics2D::~Physics2D()
 		delete sdl_event;
 }
 
-bool Physics2D::init(std::vector<Defcronyke::GameObject*>& objects_on_screen)
-{
-	b2BodyDef ground_body_def;
-	ground_body_def.position.Set(0.0f, 0.0f);
-
-	b2Body* ground_body = this->world.CreateBody(&ground_body_def);
-
-	b2PolygonShape ground_body_shape;
-
-	ground_body_shape.SetAsBox(50.0f, 0.0f);
-
-	b2FixtureDef ground_body_fixture_def;
-	ground_body_fixture_def.shape = &ground_body_shape;
-	ground_body_fixture_def.friction = 1.0f;
-
-	ground_body->CreateFixture(&ground_body_fixture_def);
-
-	for (unsigned int i = 0; i < objects_on_screen.size(); i++)
-	{
-		b2BodyDef dynamic_body_def;	// a dynamic body
-		dynamic_body_def.type = b2_dynamicBody;
-
-		dynamic_body_def.position.Set(objects_on_screen[i]->get_x(), objects_on_screen[i]->get_y());
-
-		dynamic_body_def.angle = deg_to_rad(objects_on_screen[i]->rot);
-
-		b2Body* dynamic_body = this->world.CreateBody(&dynamic_body_def);
-		this->dynamic_bodies.push_back(dynamic_body);
-
-		if (!objects_on_screen[i]->is_concave) // if object is convex
-		{
-			b2PolygonShape dynamic_body_shape;
-
-			int32 vertex_count = objects_on_screen[i]->coords_physics.size();
-			b2Vec2 vertices[vertex_count];
-			for (int j = 0; j < vertex_count; j++)
-			{
-				vertices[j] = {
-					objects_on_screen[i]->coords_physics[j].x,
-					objects_on_screen[i]->coords_physics[j].y };
-			}
-			dynamic_body_shape.Set(vertices, vertex_count);
-
-			b2FixtureDef dynamic_body_fixture_def;
-			dynamic_body_fixture_def.shape = &dynamic_body_shape;
-			dynamic_body_fixture_def.density = 1.0f;
-
-			if (objects_on_screen[i]->is_player)
-			{
-				dynamic_body_fixture_def.friction = 0.3f;
-				dynamic_body_fixture_def.userData = (void*)1;
-			}
-			else if (objects_on_screen[i]->is_goal)
-			{
-				dynamic_body_fixture_def.friction = 0.1f;
-				dynamic_body_fixture_def.userData = (void*)3;
-			}
-			else
-			{
-				dynamic_body_fixture_def.friction = 0.05f;
-				dynamic_body_fixture_def.userData = (void*)2;
-			}
-
-			dynamic_body->CreateFixture(&dynamic_body_fixture_def);
-		}
-		else	// if object is concave
-		{
-			for (unsigned int j = 0; j < objects_on_screen[i]->convex_objects.size(); j++)
-			{
-				b2PolygonShape dynamic_body_shape;
-				int32 vertex_count = objects_on_screen[i]->convex_objects[j]->coords_physics.size();
-				b2Vec2 vertices[vertex_count];
-				for (int k = 0; k < vertex_count; k++)
-				{
-					vertices[k] = {
-						objects_on_screen[i]->convex_objects[j]->coords_physics[k].x,
-						objects_on_screen[i]->convex_objects[j]->coords_physics[k].y };
-				}
-				dynamic_body_shape.Set(vertices, vertex_count);
-
-				b2FixtureDef dynamic_body_fixture_def;
-				dynamic_body_fixture_def.shape = &dynamic_body_shape;
-				dynamic_body_fixture_def.density = 1.0f;
-
-				if (objects_on_screen[i]->is_player)
-				{
-					dynamic_body_fixture_def.friction = 0.3f;
-					dynamic_body_fixture_def.userData = (void*)1;
-				}
-				else if (objects_on_screen[i]->is_goal)
-				{
-					dynamic_body_fixture_def.friction = 0.1f;
-					dynamic_body_fixture_def.userData = (void*)3;
-				}
-				else
-				{
-					dynamic_body_fixture_def.friction = 0.05f;
-					dynamic_body_fixture_def.userData = (void*)2;
-				}
-
-				dynamic_body->CreateFixture(&dynamic_body_fixture_def);
-			}
-		}
-	}
-
-	this->contact_listener = new MyContactListener;
-	this->world.SetContactListener(this->contact_listener);
-
-	this->sdl_event = new SDL_Event;
-
-	return true;
-}
-
 Physics2D::EVENTS Physics2D::handle_events()
 {
 	Physics2D::EVENTS event = NOTHING;
@@ -465,6 +352,117 @@ Physics2D::EVENTS Physics2D::handle_events()
 	}
 
 	return event;
+}
+
+bool Physics2D::init(std::vector<Defcronyke::GameObject*>& objects_on_screen)
+{
+	b2BodyDef ground_body_def;
+	ground_body_def.position.Set(0.0f, 0.0f);
+
+	b2Body* ground_body = this->world.CreateBody(&ground_body_def);
+
+	b2PolygonShape ground_body_shape;
+
+	ground_body_shape.SetAsBox(50.0f, 0.0f);
+
+	b2FixtureDef ground_body_fixture_def;
+	ground_body_fixture_def.shape = &ground_body_shape;
+	ground_body_fixture_def.friction = 1.0f;
+
+	ground_body->CreateFixture(&ground_body_fixture_def);
+
+	for (unsigned int i = 0; i < objects_on_screen.size(); i++)
+	{
+		b2BodyDef dynamic_body_def;	// a dynamic body
+		dynamic_body_def.type = b2_dynamicBody;
+
+		dynamic_body_def.position.Set(objects_on_screen[i]->get_x(), objects_on_screen[i]->get_y());
+
+		dynamic_body_def.angle = deg_to_rad(objects_on_screen[i]->rot);
+
+		b2Body* dynamic_body = this->world.CreateBody(&dynamic_body_def);
+		this->dynamic_bodies.push_back(dynamic_body);
+
+		if (!objects_on_screen[i]->is_concave) // if object is convex
+		{
+			b2PolygonShape dynamic_body_shape;
+
+			int32 vertex_count = objects_on_screen[i]->coords_physics.size();
+			b2Vec2 vertices[vertex_count];
+			for (int j = 0; j < vertex_count; j++)
+			{
+				vertices[j] = {
+					objects_on_screen[i]->coords_physics[j].x,
+					objects_on_screen[i]->coords_physics[j].y };
+			}
+			dynamic_body_shape.Set(vertices, vertex_count);
+
+			b2FixtureDef dynamic_body_fixture_def;
+			dynamic_body_fixture_def.shape = &dynamic_body_shape;
+			dynamic_body_fixture_def.density = objects_on_screen[i]->density;
+			dynamic_body_fixture_def.friction = objects_on_screen[i]->friction;
+			dynamic_body_fixture_def.restitution = objects_on_screen[i]->restitution;
+
+			if (objects_on_screen[i]->is_player)
+			{
+				dynamic_body_fixture_def.userData = (void*)1;
+			}
+			else if (objects_on_screen[i]->is_goal)
+			{
+				dynamic_body_fixture_def.userData = (void*)3;
+			}
+			else
+			{
+				dynamic_body_fixture_def.userData = (void*)2;
+			}
+
+			dynamic_body->CreateFixture(&dynamic_body_fixture_def);
+		}
+		else	// if object is concave
+		{
+			for (unsigned int j = 0; j < objects_on_screen[i]->convex_objects.size(); j++)
+			{
+				b2PolygonShape dynamic_body_shape;
+				int32 vertex_count = objects_on_screen[i]->convex_objects[j]->coords_physics.size();
+				b2Vec2 vertices[vertex_count];
+				for (int k = 0; k < vertex_count; k++)
+				{
+					vertices[k] = {
+						objects_on_screen[i]->convex_objects[j]->coords_physics[k].x,
+						objects_on_screen[i]->convex_objects[j]->coords_physics[k].y };
+				}
+				dynamic_body_shape.Set(vertices, vertex_count);
+
+				b2FixtureDef dynamic_body_fixture_def;
+				dynamic_body_fixture_def.shape = &dynamic_body_shape;
+				dynamic_body_fixture_def.density = objects_on_screen[i]->density;
+				dynamic_body_fixture_def.friction = objects_on_screen[i]->friction;
+				dynamic_body_fixture_def.restitution = objects_on_screen[i]->restitution;
+
+				if (objects_on_screen[i]->is_player)
+				{
+					dynamic_body_fixture_def.userData = (void*)1;
+				}
+				else if (objects_on_screen[i]->is_goal)
+				{
+					dynamic_body_fixture_def.userData = (void*)3;
+				}
+				else
+				{
+					dynamic_body_fixture_def.userData = (void*)2;
+				}
+
+				dynamic_body->CreateFixture(&dynamic_body_fixture_def);
+			}
+		}
+	}
+
+	this->contact_listener = new MyContactListener;
+	this->world.SetContactListener(this->contact_listener);
+
+	this->sdl_event = new SDL_Event;
+
+	return true;
 }
 
 int Physics2D::step(std::vector<Defcronyke::GameObject*>& objects_on_screen)

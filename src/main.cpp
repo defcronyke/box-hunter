@@ -34,6 +34,7 @@
 #include "../include/levels/Level5.hpp"
 #include "../include/levels/Level6.hpp"
 #include "../include/levels/Level7.hpp"
+#include "../include/levels/Level8.hpp"
 
 int main(int argc, char** argv)
 {
@@ -44,8 +45,9 @@ int main(int argc, char** argv)
 //	int level = 5;
 //	int level = 6;
 //	int level = 7;
+//	int level = 8;
 
-	int num_levels = 7;
+	int num_levels = 8;
 
 	bool running_outer = true;
 
@@ -84,6 +86,8 @@ int main(int argc, char** argv)
 			Defcronyke::Level6 level6(objects, window_config);
 		else if (level == 7)
 			Defcronyke::Level7 level7(objects, window_config);
+		else if (level == 8)
+			Defcronyke::Level8 level8(objects, window_config);
 		else
 		{
 			std::cout << "Congratulations, you beat the game!" << std::endl;

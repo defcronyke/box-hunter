@@ -107,8 +107,8 @@ public:
 	Physics2D(Physics2DConfig& physics2d_config);
 	virtual ~Physics2D();
 
-	bool init(std::vector<Defcronyke::GameObject*>& objects_on_screen);
 	Physics2D::EVENTS handle_events();	// called by step()
+	bool init(std::vector<Defcronyke::GameObject*>& objects_on_screen);
 	int step(std::vector<Defcronyke::GameObject*>& objects_on_screen);	// modifies x and y, return 0 to exit, 1 for running, and 2 on level complete
 };
 

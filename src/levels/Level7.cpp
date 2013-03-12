@@ -23,7 +23,6 @@
  */
 
 #include "../../include/levels/Level7.hpp"
-#include "../../include/levels/Level6.hpp"
 #include <vector>
 #include "../../include/Triangle.hpp"
 #include "../../include/Square.hpp"
@@ -77,10 +76,10 @@ Level7::Level7(std::vector<Defcronyke::GameObject*>& objects_on_screen, Defcrony
 		new Defcronyke::Triangle(11.0f, 9.0f, 0.0f, 0.25f, 7.5f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::Goal((window_config.width * 0.02f) - 2.0f, (window_config.height * 0.02f) - 1.0f + 10.0f, 0.0f, 0.5f, 0.5f));
+		new Defcronyke::Goal((window_config.width * 0.02f) - 2.0f, (window_config.height * 0.02f) - 1.0f + 10.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.1f, 0.0f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::SquarePlayer(0.0f, 0.0f, 0.0f, 0.5f, 0.5f));
+		new Defcronyke::SquarePlayer(0.0f, 0.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.3f, 0.0f));
 }
 
 Level7::~Level7()

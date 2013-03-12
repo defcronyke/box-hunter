@@ -35,7 +35,9 @@ namespace Defcronyke
 class Polygon: public Defcronyke::GameObject
 {
 public:
-	Polygon(float x = 0.f, float y = 0.f, float rot = 0.f, float width = 1.0f, float height = 1.0f);
+	Polygon(float x = 0.f, float y = 0.f, float rot = 0.f,
+			float width = 1.0f, float height = 1.0f,
+			float density = 1.0f, float friction = 0.05f, float restitution = 0.0f);
 	virtual ~Polygon();
 };
 

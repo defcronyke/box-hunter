@@ -47,6 +47,9 @@ public:
 	float rot;	// rotation in degrees
 	float width;
 	float height;
+	float density;
+	float friction;
+	float restitution;
 
 	std::vector<glm::vec2> coords_opengl;
 	std::vector<glm::vec2> coords_physics;

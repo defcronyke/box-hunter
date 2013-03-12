@@ -40,10 +40,10 @@ Level6::Level6(std::vector<Defcronyke::GameObject*>& objects_on_screen, Defcrony
 		new Defcronyke::Triangle((window_config.width * 0.02f) / 2.0f + 1.2f, 9.0f, 0.0f, 0.25f, 3.0f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::Goal((window_config.width * 0.02f) / 2.0f - 0.25f, 10.0f, 0.0f, 0.5f, 0.5f));
+		new Defcronyke::Goal((window_config.width * 0.02f) / 2.0f - 0.25f, 10.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.1f, 0.0f));
 
 	objects_on_screen.push_back(
-		new Defcronyke::SquarePlayer((window_config.width * 0.02f) - 0.5f, 0.0f, 0.0f, 0.5f, 0.5f));
+		new Defcronyke::SquarePlayer((window_config.width * 0.02f) - 0.5f, 0.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.3f, 0.0f));
 }
 
 Level6::~Level6()

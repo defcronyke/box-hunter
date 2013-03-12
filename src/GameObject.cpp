@@ -36,7 +36,10 @@ GameObject::GameObject()
 	  y(0.0f),
 	  rot(0.0f),
 	  width(1.0f),
-	  height(1.0f)
+	  height(1.0f),
+	  density(1.0f),
+	  friction(0.05f),
+	  restitution(0.0f)
 {
 
 }

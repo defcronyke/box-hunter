@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Box Hunter.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Window.cpp
+# CMakeLists.txt
 #
 #  Created on: 2013-03-10
 #      Author: Jeremy Carter
@@ -52,7 +52,8 @@ add_executable(
 	src/levels/Level4.cpp
 	src/levels/Level5.cpp
 	src/levels/Level6.cpp
-	src/levels/Level7.cpp )
+	src/levels/Level7.cpp
+	src/levels/Level8.cpp )
 
 link_directories( /usr/local/lib )
 

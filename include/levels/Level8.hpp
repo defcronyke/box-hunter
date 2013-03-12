@@ -15,29 +15,29 @@
  * You should have received a copy of the GNU General Public License
  * along with Box Hunter.  If not, see <http://www.gnu.org/licenses/>.
  *
- * ConcavePolygon.hpp
+ * Level8.hpp
  *
- *  Created on: 2013-03-08
+ *  Created on: 2013-03-11
  *      Author: Jeremy Carter
  *     Contact: Jeremy@JeremyCarter.ca
  */
 
-#ifndef CONCAVEPOLYGON_HPP_
-#define CONCAVEPOLYGON_HPP_
+#ifndef LEVEL8_HPP_
+#define LEVEL8_HPP_
 
 #include <vector>
-#include "GameObject.hpp"
+#include "../Window.hpp"
 
 namespace Defcronyke
 {
 
-class ConcavePolygon: public Defcronyke::GameObject
+class GameObject;
+
+class Level8
 {
 public:
-	ConcavePolygon(float x = 0.f, float y = 0.f, float rot = 0.f,
-				   float width = 1.0f, float height = 1.0f,
-				   float density = 1.0f, float friction = 0.05f, float restitution = 0.0f);
-	virtual ~ConcavePolygon();
+	Level8(std::vector<Defcronyke::GameObject*>& objects_on_screen, Defcronyke::WindowConfig& window_config);
+	virtual ~Level8();
 };
 
 }

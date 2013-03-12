@@ -27,7 +27,9 @@
 namespace Defcronyke
 {
 
-SquarePlayer::SquarePlayer(float x, float y, float rot, float width, float height)
+SquarePlayer::SquarePlayer(float x, float y, float rot,
+						   float width, float height,
+						   float density, float friction, float restitution)
 {
 	this->is_player = true;
 	this->is_deadly = false;
@@ -40,6 +42,10 @@ SquarePlayer::SquarePlayer(float x, float y, float rot, float width, float heigh
 
 	this->width = width;
 	this->height = height;
+
+	this->density = density;
+	this->friction = friction;
+	this->restitution = restitution;
 
 	this->T = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, 0.0f));
 	this->R = glm::rotate(this->R, this->rot, glm::vec3(0.f, 0.f, 1.0f));
