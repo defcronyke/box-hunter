@@ -38,18 +38,19 @@
 #include "../include/levels/Level009.hpp"
 #include "../include/levels/Level010.hpp"
 #include "../include/levels/Level011.hpp"
+#include "../include/levels/Level012.hpp"
+#include "../include/levels/Level013.hpp"
 
 int main(int argc, char** argv)
 {
 	int level = 1;
-//	int level = 11;
 
-	int num_levels = 10;
+	int num_levels = 13;
 
 	bool running_outer = true;
 
 	Defcronyke::WindowConfig window_config;
-	window_config.title = "Box Hunter v0.0.0";
+	window_config.title = "Box Hunter v0.0.1";
 	window_config.width = 800;
 	window_config.height = 600;
 
@@ -89,8 +90,12 @@ int main(int argc, char** argv)
 			Defcronyke::Level009 level009(objects, window_config);
 		else if (level == 10)
 			Defcronyke::Level010 level010(objects, window_config);
-//		else if (level == 11)
-//			Defcronyke::Level011 level011(objects, window_config);
+		else if (level == 11)
+			Defcronyke::Level011 level011(objects, window_config);
+		else if (level == 12)
+			Defcronyke::Level012 level012(objects, window_config);
+		else if (level == 13)
+			Defcronyke::Level013 level013(objects, window_config);
 		else
 		{
 			std::cout << "Congratulations, you beat the game!" << std::endl;

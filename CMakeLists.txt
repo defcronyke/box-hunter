@@ -26,7 +26,7 @@ cmake_minimum_required ( VERSION 2.8 )
 project ( box-hunter )
 set ( box-hunter_VERSION_MAJOR 0 )
 set ( box-hunter_VERSION_MINOR 0 )
-set ( box-hunter_VERSION_MICRO 0 )
+set ( box-hunter_VERSION_MICRO 1 )
 
 set ( CMAKE_CXX_FLAGS "-std=c++0x" )
 set ( CMAKE_BUILD_TYPE "Release" )
@@ -56,7 +56,9 @@ add_executable(
 	src/levels/Level008.cpp
 	src/levels/Level009.cpp
 	src/levels/Level010.cpp
-	src/levels/Level011.cpp )
+	src/levels/Level011.cpp
+	src/levels/Level012.cpp
+	src/levels/Level013.cpp )
 
 link_directories( /usr/local/lib )
 
