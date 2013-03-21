@@ -253,7 +253,7 @@ Physics2D::EVENTS Physics2D::handle_events()
 				event = MOVE_LEFT;
 			}
 
-			else if (this->sdl_event->key.keysym.sym == SDLK_LCTRL)
+			else if (this->sdl_event->key.keysym.sym == SDLK_LSHIFT)
 			{
 				event = JUMP;
 			}
